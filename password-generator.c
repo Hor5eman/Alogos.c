@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include <errno.h> //Used for error handling
-#include <fcntl.h> //Used for file control in Unix-like operating systems (flags)
-#include <unistd.h> //Used for file control in Unix-like operating systems (open() and close() are defined inside)
+#include <errno.h> 
+#include <fcntl.h> 
+#include <unistd.h> 
 
 int main() {
 
@@ -15,11 +15,10 @@ int main() {
     int length;
     unsigned char raw_byte[225];
 
-    //open("path",flag) - can add multiple flags using pipe | 
-    //if file does not exist it is created
+
     int fd = open("/dev/urandom", O_RDONLY);
     
-    //if fd = -1 probably the file wasn't found 
+ 
     if (fd == -1){
         perror("Error");
     } 
@@ -30,22 +29,16 @@ int main() {
     }
     close(fd);
 
-    //used to get characters[] bytes
-    /*int characters_bytes = sizeof(characters)/sizeof(characters[0]);
-    printf("%d\n",characters_bytes);*/ 
-
     for(i=0; i<length; i++){
         if(raw_byte[i]<=73){
-            //printf("%d ",raw_byte[i]);
-            //u can use %d, %X etc depending on what u want to print
-            //i think the chances for printing the 3 first characters are a bit higher but i dont know how to fix this without adding more characters
+
             printf("%c",characters[raw_byte[i]]);
         }
         else{
             while(raw_byte[i]>73){
                 raw_byte[i] = raw_byte[i] -74;
                 if(raw_byte[i]<=73){
-                    //printf("%d ",raw_byte[i]);
+ 
                     printf("%c",characters[raw_byte[i]]);
                 }
             }
