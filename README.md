@@ -1,2 +1,2 @@
-# Alogos.c
-Random C code
+# Alogos 
+Random C code, sometimes it works
